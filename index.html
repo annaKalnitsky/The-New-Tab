@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>The New Tab</title>
+   <meta name="description" content="The New Tab"> 
+   <meta name="keywords" content="Chrome New Tab">
+   <!--Favicon-->
+   <link rel="icon" href="#" type="image/x-icon">
+   <link rel="shortcut icon" href="#" type="image/x-icon"> 
+   <!--OG tags-->
+   <meta property="og:title" content="The New Tab"/>
+   <meta property="og:description" content="The New Tab"/>
+   <meta property="og:type" content="New Tab"/>
+   <meta property="og:image" content="#"/>
+   <meta property="og:site_name" content="The New Tab"/>
+   <!-- main css -->
+   <link rel="stylesheet" href="css/main.css">
+   <!-- Modal CSS -->
+   <link rel="stylesheet" href="css/jquery.arcticmodal-0.3.css">
+   <!-- Autocomplete CSS -->
+   <link rel="stylesheet" href="css/jquery-ui.min.css">
+   <!-- Google fonts -->
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap">
+   <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400&display=swap" rel="stylesheet">
+   <!-- CSS styles -->
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/solid.css" integrity="sha384-QokYePQSOwpBDuhlHOsX0ymF6R/vLk/UQVz3WHa6wygxI5oGTmDTv8wahFOSspdm" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/fontawesome.css" integrity="sha384-vd1e11sR28tEK9YANUtpIOdjGW14pS87bUBuOIoBILVWLFnS+MCX9T6MMf0VdPGq" crossorigin="anonymous">
+   <link rel="stylesheet" href="css/font-awesome-animation.min.css">   
+</head>
+<body>
+    <!-- once shown modal -->
+<div style="display:none" id="once-popup">
+    <div class="inner">
+          <form action="#" method="post" class="keep__inputs">
+            <div id="popup-close">x</div>
+            <div class="keep__icon">
+              <i class="fas fa-hand-point-up  faa-float animated"></i> 
+            </div>
+             <h4 class="keep__title">
+                Thank you for the installation!
+             </h4>
+             <p class="keep__text">
+                Click <b>"Keep changes"</b> to enjoy <br> The New Tab Chrome Extention.   
+             </p>
+          </form> 
+      </div> 
+    </div>
+</div>
+<!-- END ONCE SHOWN MODAL --> 
+	<!-- Preloader start-->
+  <div id="page-preloader">
+    <div class="cssload-container">
+      <div class="cssload-whirlpool"></div>
+    </div>
+  </div>
+  <!-- Preloader finish -->
+<!-- side bar -->
+   <input type="checkbox" id="nav-toggle" hidden>
+   <nav class="navi">
+      <label for="nav-toggle" class="nav-toggle" onclick></label>
+      <div class="logo">
+         <h4> 
+            Settings
+         </h4>
+      </div>
+      <div class="account">
+         <h5>Account and backup</h5>
+         <a href="#" id="account__btn">Sign in</a>
+         <a href="#" id="account__btn">Sign out</a>
+      </div>
+      <div class="appearance">
+         <h5>Appearance</h5>
+         <div class="wrap d-flex">
+            <p>Off weather</p>
+            <label class="switch"> 
+               <input type="checkbox" onclick="showMe(this)">
+               <span class="slider round"></span>
+            </label>
+         </div>
+         <div class="wrap d-flex">
+            <p>Off animation</p>
+            <label class="switch"> 
+               <input type="checkbox" onclick="showMe2(this)">
+               <span class="slider round"></span>
+            </label>
+         </div>
+         <p>Background image</p>
+         <div class="back__wrap d-flex">
+            <button id="back__img1" onclick="changeimg1()"></button>
+            <button id="back__img2" onclick="changeimg2()"></button>
+            <button id="back__img3" onclick="changeimg3()"></button>
+            <button id="back__img4" onclick="changeimg4()"></button>
+            <button id="back__img5" onclick="changeimg5()"></button>
+         </div>
+      </div>
+      <div class="search__wrap">
+         <h5>Search settings</h5>
+         <div class="engine__wrap d-flex">
+            <p>Search Engine</p>
+            <select class="selectID" id="selectID">
+               <option class="value" value=”GR”>Google</option>
+               <option value=”YE”>Bing</option>
+               <option value=”BL”>Yahoo!</option>
+            </select>
+         </div>    
+      </div>
+   </nav> 
+   <!--end side bar -->
+   <div class="container__main" id="container__main">
+      <header id=header class="header">
+	      <div id="header__weather" class="header__weather">
+	        <div id="cont" style="display:none;  display:block;">
+              <div class="container">
+                <div class="notification"> </div>
+                <div class="weather-container">
+                  <div class="location">
+                        <p>-</p>
+                    </div>
+                    <div class="temperature-value">
+                        <p>- °<span>C</span></p>
+                    </div>
+                    <div class="weather-icon">
+                        <img src="" alt="">
+                    </div>
+                    <div class="temperature-description">
+                        <p class="temperature-description"> - </p>
+                    </div>  
+                </div>
+  		      </div>
+	      </div>
+      </header>
+    <!-- stars up -->
+    <div id="stars" class="stars">
+      <div id='stars1' style="display:none; display:block;"></div>
+      <div id='stars2' style="display:none; display:block;"></div>
+      <div id='stars3' style="display:none; display:block;"></div>
+   </div>
+   <!--end stars up -->
+	<div class="main_search_link">
+		<div class="search__m">
+          <form action="http://google.com/search" target="blank" class="search__form">
+              <input class="noninput" type="radio" name="odin" checked="checked" id="vkl1" value="web">
+              <label class="menu__link menu__link_first" for="vkl1">Web</label>
+              <input class="noninput" type="radio" name="odin" id="vkl2" value="images">
+              <label class="menu__link" for="vkl2">Images</label>
+              <input class="noninput" type="radio" name="odin" id="vkl3" value="videos">
+              <label class="menu__link" for="vkl3">Videos</label>
+              <input class="noninput" type="radio" name="odin" id="vkl4" value="maps">
+              <label class="menu__link" for="vkl4">Maps</label> <br><br>
+              <input class="search__input" type="search" name="q" spellcheck="false" placeholder="Search..." autofocus>
+              <button id="search__btn" class="search__btn" type="submit">
+                 <i class="fas fa-search faa-spin animated-hover"></i> 
+              </button>
+          </form>    
+    	</div>
+    		<div class="links__icons">
+	           <div href="#" class="first__icon d-flex">
+	              <a href="https://www.facebook.com" class="link__icon">
+	                 <i class="fab fa-facebook faa-burst animated-hover"></i>
+	              </a>
+	              <a href="https://www.instagram.com" class="link__icon">
+	                 <i class="fab fa-instagram faa-burst animated-hover"></i>
+	              </a>
+	              <a href="https://slack.com" class="link__icon">
+	                 <i class="fab fa-slack faa-burst animated-hover"></i>
+	              </a>
+	              <a href="https://web.telegram.org" class="link__icon">
+	                 <i class="fab fa-telegram-plane faa-burst animated-hover"></i>
+	              </a>
+	              <a href="https://mail.google.com" class="link__icon">
+	                <i class="fas fa-envelope-open faa-burst animated-hover"></i>
+	              </a>
+		        </div>
+		        <div class="second__icon">
+		          <div class="second__icon d-flex">
+		             <a href="https://www.youtube.com" class="link__icon">
+		                <i class="fab fa-youtube faa-burst animated-hover"></i>
+		             </a>
+		             <a href="https://web.whatsapp.com" class="link__icon">
+		                <i class="fab fa-whatsapp faa-burst animated-hover"></i>
+		             </a>
+		             <a href="https://github.com" class="link__icon">
+		                <i class="fab fa-github faa-burst animated-hover"></i>
+		             </a>
+		             <a href="https://calendar.google.com/calendar/r" class="link__icon">
+		                <i class="fas fa-calendar-alt faa-burst animated-hover"></i>
+		             </a>
+		             <a href="https://www.google.com/drive/" class="link__icon">
+		               <i class="fab fa-google-drive faa-burst animated-hover"></i>
+		             </a>
+		          </div>
+		       </div>   	
+			</div>
+	<!-- Sign-up modal -->   
+      <div style="display: none;">
+       <div class="box-modal" id="exampleModal">
+           <div class="box-modal_close arcticmodal-close">x</div>
+            <form action="#" method="post" class="form-content__inputs">
+               <h4 class="form-content__title">
+                  Welcome
+               </h4>
+               <p class="form-content__text form-content__text_top">
+                  Sign in to your account and back up your data to cloud storage
+               </p>
+               <input type="email" class="form__input" name="email" placeholder="E-mail">
+               <input type="password" class="form__input form__input_tel" name="pwd" placeholder="Password">
+               <a href="#" class="form__forgot">Forgot Password?</a>
+               <button type="submit" class="form-content__btn">
+                  Sign In Now
+               </button>
+               <p class="form-content__text form-content__text_bottom">
+                  Don't have an account yet? <a href="#" class="form__up">Sign up</a>
+               </p>
+            </form>  
+         </div>
+       </div>
+     <!--End sign-up modal --> 
+      
+<script src="js/jquery-3.4.0.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/jquery.arcticmodal-0.3.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
