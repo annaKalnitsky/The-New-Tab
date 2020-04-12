@@ -1,0 +1,211 @@
+
+
+/*-------- Weather widget  ----*/
+
+// $(document).ready(function () {
+    
+//     // Get Location 
+//     navigator.geolocation.getCurrentPosition(success, error);
+
+//     function success(pos) {
+//         var lat = pos.coords.latitude;
+//         var long = pos.coords.longitude;
+//         weather(lat, long);
+//     }
+
+//     function error() {
+//         console.log('There was an error');
+//     }
+
+//     // Call Weather
+//     function weather(lat, long) {
+//         var URL = `https://fcc-weather-api.glitch.me/api/current?lat=${lat}&lon=${long}`;
+
+//         $.getJSON(URL, function(data) {
+//             updateDOM(data);
+//         });
+//     }
+
+//     // Update Dom
+//     function updateDOM(data) {
+//         var city = data.name;
+//         var temp = Math.round(data.main.temp_max);
+//         var desc = data.weather[0].description;
+//         var icon = data.weather[0].icon;
+
+//         $('#city').html(city);
+//         $('#temp').html(temp);
+//         $('#desc').html(desc);
+//         $('#icon').attr('src', icon);
+//     }
+// });
+
+/*-------- Once Shown Modal  ----*/
+
+$(document).ready(function() {
+    if(localStorage.getItem('popState') != 'shown'){
+        $("#once-popup").delay(2000).fadeIn();
+        localStorage.setItem('popState','shown')
+    }
+
+    $('#popup-close').click(function(e) 
+    {
+    $('#once-popup').fadeOut(); 
+    });
+    $('#once-popup').click(function(e) 
+    {
+    $('#once-popup').fadeOut(); 
+    });
+});
+
+ 
+/*-------- Autocomplete ----*/
+/*
+$(function() {
+       $(".search__input").autocomplete({
+    source:[states]
+  }); 
+}); 
+*/
+/*-------- Weather ----*/
+
+// !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+
+
+
+
+/*--------Change background IMG ---------*/
+
+ function changeimg1(){
+      document.getElementById('container__main').style.backgroundImage = "url(img/nitish-meena-ANo5_iE9dcU-unsplash.jpg)";
+    }
+function changeimg2(){
+      document.getElementById('container__main').style.backgroundImage = "url(img/ferdinand-stohr-W1FIkdPAB7E-unsplash.jpg)";
+    }
+function changeimg3(){
+      document.getElementById('container__main').style.backgroundImage = "url(img/carl-cerstrand-oBPSdIOYHNg-unsplash.jpg)";
+    }
+function changeimg4(){
+      document.getElementById('container__main').style.backgroundImage = "url(img/paul-gilmore-KT3WlrL_bsg-unsplash.jpg)";
+    }
+function changeimg5(){
+      document.getElementById('container__main').style.backgroundImage = "url(img/tanvi-malik-OeC1wIsKNpk-unsplash.jpg)";
+    }
+
+// Off/On Switch
+
+function showMe (box) {
+var vis = (box.checked) ? "none" : "block" ;
+document.getElementById('cont').style.display = vis;
+}
+
+
+function showMe2 (box) {
+var vis = (box.checked) ? "none" : "block" ;
+document.getElementById('stars').style.display = vis;
+}
+
+
+//Modal
+
+var suggestions = [];
+
+$(function () {
+  $('#account__btn').click(function (e) {
+    e.preventDefault()
+     $('#exampleModal').arcticmodal();
+  });
+
+
+//Search input Focus
+
+//    $("input[type='radio']").click(function(){
+//     $(this).siblings("input[type='search']").focus();
+// });
+
+//Google search
+
+    $('input[name=odin]').on('change', function () {
+        var $frm = $('.search__form');
+        var action = '';
+
+        $frm.find('.toremove').remove();
+
+        switch ($(this).val().toLowerCase()) {
+            case 'images':
+                //action = 'https://www.google.com/imghp';
+
+                action = 'https://www.google.com/search';
+                $frm.append('<input type="hidden" name="newwindow" value="1" class="toremove" /><input type="hidden" name="tbm" value="isch" class="toremove" />');
+
+                break;
+            case 'videos':
+                //action = 'https://www.google.com/videohp';
+
+                action = 'https://www.google.com/search';
+                $frm.append('<input type="hidden" name="tbm" value="vid" class="toremove" /><input type="hidden" name="hl" value="ru" class="toremove" /><input type="hidden" name="source" value="hp" class="toremove" />');
+
+                break;
+            case 'maps':
+            
+                action = 'https://www.google.com/maps';
+                break;
+            default:
+
+                action = 'https://www.google.com/search';
+                break;
+        }
+
+        $frm.attr('action', action);
+        $('.search__input').focus();
+    });
+
+    $('.search__input').autocomplete({
+        source: function(request, response) {
+            $.ajax({
+                url: 'http://ff.search.yahoo.com/gossip',
+                dataType: 'jsonp',
+                async: false,
+                data: {
+                    output:   'jsonp',
+                    command:  request.term,
+                    format:   'json',
+                    callback: 'suggsearchCallback'
+                },
+                //jsonpCallback: 'suggsearch'
+                /*
+                success: function(data) {
+                    console.log('success');
+                    var suggestions = [];
+
+                    $.each(data.gossip.results, function(i, val) {
+                        suggestions.push(val.key);
+                    });
+                    
+                    response(suggestions);
+                }
+                */
+            });
+
+            response(suggestions);
+        }
+    });
+});
+
+function suggsearchCallback(resp) {
+    console.log('suggsearchCallback');
+    console.log(resp);
+
+    $.each(resp.gossip.results, function(i, val) {
+        suggestions.push(val.key);
+    });
+
+    return suggestions;
+}
+
+
+  
+
+
+  
+
